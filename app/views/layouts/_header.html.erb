@@ -1,0 +1,95 @@
+<header class="sticky-top">
+<nav class="navbar navbar-expand-lg bg-info">
+  <div class="container-fluid">
+
+    <!--<nav class="nav navbar-nav navbar-left">-->
+      <h1><%= link_to image_tag("Nagano-Caki-Logo0.png"), root_path %></h1>
+    <!--</nav>-->
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+          <!--顧客がログインしているとき-->
+          <% if customer_signed_in? %>
+          <div><i class="fas fa-grin-wink"></i> ようこそ、<strong><%= current_customer.name %></strong> さん！</div>
+          <li>
+            <%= link_to customers_path,class: 'nav-link text-dark' do %>
+            <i class="fas fa-user"></i> My page
+            <% end %>
+          </li>
+          <li>
+            <%= link_to items_path,class: 'nav-link text-dark' do %>
+            <i class="fas fa-store"></i> Item list
+            <% end %>
+          </li>
+          <li>
+            <%= link_to cart_items_path,class: 'nav-link text-dark' do %>
+            <i class="fas fa-shopping-cart"></i> Cart
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_customer_session_path, method: :delete,class: 'nav-link text-dark' do %>
+            <i class="fas fa-sign-out-alt"></i> Log out
+            <% end %>
+          </li>
+
+          <!--管理者がログインしているとき-->
+          <% elsif admin_signed_in? %>
+          <div>管理者ログイン中</div>
+          <li>
+            <%= link_to admin_items_path,class: 'nav-link text-dark' do %>
+            <i class="fas fa-store"></i> Item list
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_customers_path,class: 'nav-link text-dark' do %>
+            <i class="fas fa-users"></i> Customer list
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_order_path,class: 'nav-link text-dark' do %>
+            <i class="fas fa-file-alt"></i> Order list
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_genre_path,class: 'nav-link text-dark' do %>
+            <i class="fas fa-tags"></i> Genre list
+            <% end %>
+          </li>
+          <li>
+            <%= link_to about_path, class: 'nav-link text-dark' do %>
+            <i class="fas fa-link"></i> About
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-dark' do %>
+            <i class="fas fa-sign-out-alt"></i> Log out
+            <% end %>
+          </li>
+
+          <!--ログインしていないとき-->
+          <% else %>
+          <li>
+            <%= link_to about_path, class: 'nav-link text-dark' do %>
+            <i class="fas fa-link"></i> About
+            <% end %>
+          </li>
+          <li>
+            <%= link_to items_path,class: 'nav-link text-dark' do %>
+            <i class="fas fa-store"></i> Item list
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_customer_registration_path,class: 'nav-link text-dark' do %>
+              <i class="fas fa-user-plus"></i> Sign up
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_customer_session_path ,class: 'nav-link text-dark' do %>
+              <i class="fas fa-sign-in-alt"></i> Log in
+            <% end %>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

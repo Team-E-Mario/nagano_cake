@@ -1,7 +1,19 @@
 Rails.application.routes.draw do
 
-  devise_for :admins
-  devise_for :customers
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+}
+
+ scope module: :public do
+    resource :customers, only: [:edit, :update]
+  end
+
+  devise_for :customers,skip: [:passwords], controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
+
+
   # 管理者側
   namespace :admin do
     root to: 'homes#top'
@@ -23,7 +35,9 @@ Rails.application.routes.draw do
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     get '/customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch '/customers/withdraw' => 'customers#withdraw', as: 'withdraw'
-    resource :customers, only: [:show, :edit, :update]
+    resource :customers, only: [:show]
   end
+
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

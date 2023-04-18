@@ -29,7 +29,7 @@ class Public::SessionsController < Devise::SessionsController
   # end
 
   def after_sign_in_path_for(resource)
-    customers_path
+    root_path
   end
 
   def reject_withdraw_customer

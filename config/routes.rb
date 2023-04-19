@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :create, :edit, :update]
     resources :orders, only: [:show, :update]
     resources :orders_items, only: [:update]
-    resources :customers, only: [:index, :show, :edit]
+    resources :customers, only: [:index, :show, :edit, :update]
   end
   # 顧客側
   scope module: :public do

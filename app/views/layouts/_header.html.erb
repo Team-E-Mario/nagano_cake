@@ -9,7 +9,9 @@
         <ul class="navbar-nav ml-auto">
           <!--顧客がログインしているとき-->
           <% if customer_signed_in? %>
-          <div><i class="fas fa-grin-wink"></i> ようこそ、<strong><%= current_customer.last_name %></strong> さん！</div>
+          <div>
+            <i class="fas fa-smile-wink fa-spin"></i> ようこそ、<strong><%= current_customer.last_name %></strong> さん！<i class="fas fa-smile-wink fa-spin"></i>
+            </div>
           <li>
             <%= link_to customers_path,class: 'nav-link text-dark' do %>
             <i class="fas fa-user"></i> My page

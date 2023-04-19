@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   has_many :order_items, dependent: :destroy
 
 
-  enum sale_status: { 売り切れ: 0, 販売中: 1 }
+
 
   def get_image(width, height)
     unless image.attached?

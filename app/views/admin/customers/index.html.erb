@@ -22,13 +22,13 @@
               <td class="align-middle"><u><%= link_to customer.last_name + customer.first_name, admin_customer_path(customer.id), class:"font-weight-bold" %></u></td>
               <td class="align-middle"><%= customer.email %></td>
               <!--会員ステータス-->
-              <!--<td class="align-middle">-->
-                <%# if customer.withdrawal_status == false %>
-                  <!--<p class="text-success font-weight-bold">有効</p>-->
-                <%# else %>
-                  <!--<p class="text-secondary">退会</p>-->
-                <%# end %>
-              <!--</td>-->
+              <td class="align-middle">
+                <% if customer.membership_status == false %>
+                  <p class="text-success font-weight-bold">有効</p>
+                <% else %>
+                  <p class="text-secondary">退会</p>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>

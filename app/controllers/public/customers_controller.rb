@@ -1,4 +1,6 @@
 class Public::CustomersController < ApplicationController
+
+
   def show
     @customer = current_customer
   end
@@ -10,9 +12,19 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = current_customer
     @customer.update(customer_params)
+    redirect_to customers_path
   end
 
   def unsubscribe
+  end
+
+  def withdraw
+    @customer = current_customer
+    @customer.membership_status = true
+    if @customer.save
+      reset_session
+      redirect_to root_path
+    end
   end
 
 

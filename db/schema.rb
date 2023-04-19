@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2023_04_17_045932) do
     t.string "name"
     t.integer "sale_status", default: 1, null: false
     t.text "introduction"
-    t.integer "price_with_tax"
+    t.integer "price_without_tax"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

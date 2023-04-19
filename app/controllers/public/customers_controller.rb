@@ -15,6 +15,15 @@ class Public::CustomersController < ApplicationController
   def unsubscribe
   end
 
+  def withdraw
+    @customer = current_customer
+    @customer.membership_status = true
+    if @customer.save
+      reset_session
+      redirect_to root_path
+    end
+  end
+
 
   private
 

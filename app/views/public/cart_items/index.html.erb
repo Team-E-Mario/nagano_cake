@@ -1,2 +1,14 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10">]
+      <h2><i class="far fa-shopping-cart"></i>ショッピングカート</h2>
+    </div>
+    <div class="col-xs-2">
+      <div>
+        <%= link_to public_cart_items_destoroy_all_path(@cart_item),class: 'nav-link text-dark' do =%>
+        <i class="fas fa-cart-arrow-down"></i> カートを空にする
+      </div>
+    </div>
+  </div>
+  <div class="ro"></div>
+</div>

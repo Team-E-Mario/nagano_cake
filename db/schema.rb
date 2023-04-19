@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 2023_04_17_045932) do
   create_table "items", force: :cascade do |t|
     t.integer "category_id"
     t.string "name"
-    t.integer "sale_status", default: 1, null: false
+    t.boolean "sale_status", default: true, null: false
     t.text "introduction"
     t.integer "price_without_tax"
     t.datetime "created_at", precision: 6, null: false

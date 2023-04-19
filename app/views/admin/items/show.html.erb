@@ -23,7 +23,7 @@
 
         <tr>
           <th>税込み価格（税抜き価格）</th>
-          <th><%= (@item.price_with_tax * 1.1).to_i %>(<%= @item.price_with_tax %>)円</th>
+          <th><%= (@item.price_without_tax * 1.1).to_i %>(<%= @item.price_without_tax %>)円</th>
         </tr>
 
         <tr>

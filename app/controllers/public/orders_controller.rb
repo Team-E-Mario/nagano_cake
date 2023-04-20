@@ -5,23 +5,42 @@ class Public::OrdersController < ApplicationController
 
   def new
     @order = Order.new
-    @delivery_address = current_customer.address
+    @delivery_addresses = current_customer.addresses
   end
 
   def confirm
-    @order = Order.new(order_params)
-    @address = Address.find(params[:order][:address_id])
-    @order.postcode = @address.postcode
-    @order.address = @address.address
-    @order.name = @address.name
+    @order = Order.new
+    @order.payment_method = params[:payment_method]
+    @order.freight = 800
+
+    # ここがよく分からない
+    @item_total_price = 0 #商品合計金額(税込)
+    current_user.cart_items.each do |cart_item|
+      subtotal_price = cart_item.item.price * cart_item.item_count * 110 / 100 #小計(税込)
+      @item_total_price = 0 += subtotal_price
+    end
+    @order.billing_amount = @item_total_price + @order.shipping #請求金額(税込)=商品合計金額+送料
+
+    # 配送先の条件分岐
+    if params[:order][:address_option] == "0"
+      @order.delivery_postcode = current_customer.postcode
+      @order.delivery_address = current_customer.address
+      @order.delivery_name = current_customer.last_name + current_customer.first_name
+    elsif params[:order][:address_option] == "1"
+     @address = Address.find(params[:order][:address_id])
+     @order.postcode = @address.postcode
+     @order.address = @address.address
+     @order.name = @address.name
+    else params[:order][:address_option] == "2"
+    end
   end
 
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    @order.freight = 800
+    #@order.freight = 800
     @order.save
-    redirect_to orders_thanx_path
+    redirect_to thanx_path
   end
 
   def show
@@ -34,7 +53,10 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:delivery_postcode, :delivery_address, :delivery_name, :billing_amount, :payment_method, :customer_id, :status)
+    # params.require(:order).permit(:delivery_postcode, :delivery_address, :delivery_name, :billing_amount, :payment_method, :customer_id, :statu
+    params.require(:order).permit(:delivery_postcode, :delivery_address, :delivery_name, :billing_amount, :payment_method)
   end
+
+
 
 end

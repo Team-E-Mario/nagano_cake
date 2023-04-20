@@ -2,7 +2,7 @@
   <div class="row my-3">
     <div class="col-sm-10 px-sm-0 mx-auto">
       <h2>注文情報入力</h2>
-      <%= form_with model: @order  do |f| %>
+      <%= form_with model: @order do |f| %>
       <h4 class="mt-2"><b>支払い方法</b></h4>
 
       <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
@@ -13,7 +13,7 @@
 
       <h4 class="mt-2"><b>お届け先</b></h4>
       <%= f.radio_button :address_option, 0 %>
-      <%= f.label :address_id, "ご自身の住所", value: 0, class: "radio-label label-size" %><br>
+      <%= f.label :address_option, "ご自身の住所", value: 0, class: "radio-label label-size" %><br>
           <div class="radio-button-content">
             <%= "#{current_customer.postcode} #{current_customer.address}" %><br>
             <%= "#{current_customer.last_name} #{current_customer.first_name}" %><br>
@@ -22,15 +22,15 @@
       <% if current_customer.addresses.empty? %>
       <% else %>
       <%= f.radio_button :address_option, 1 %>
-      <%= f.label :address_id, "登録済み住所から選択", value: 0, class: "radio-label label-size" %><br>
+      <%= f.label :address_option, "登録済み住所から選択", value: 1, class: "radio-label label-size" %><br>
 
         <div class="radio-button-content">
-        <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
+        <%= f.select :address_id, options_from_collection_for_select(@delivery_addresses, :id, :address_display) %>
         </div>
       <% end %>
 
       <%= f.radio_button :address_option, 2 %>
-      <%= f.label :address_id, "新しいお届け先", value: 0, class: "radio-label label-size" %><br>
+      <%= f.label :address_option, "新しいお届け先", value: 2, class: "radio-label label-size" %><br>
       <table class="ml-5">
         <tr>
           <td>郵便番号（ハイフン無し）</td>
@@ -49,4 +49,5 @@
       <% end %>
     </div>
   </div>
+ </div>
 </div>

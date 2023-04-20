@@ -34,15 +34,15 @@
       <table class="ml-5">
         <tr>
           <td>郵便番号（ハイフン無し）</td>
-          <td><%= f.text_field :postcode, class: "form-control", size: 40, id: "customer_postcode" %></td>
+          <td><%= f.text_field :delivery_postcode, class: "form-control", size: 40, placeholder: "1001000" %></td>
         </tr>
         <tr>
           <td>住所</td>
-          <td><%= f.text_field :address, class: "form-control", size: 40, id: "customer_address" %></td>
+          <td><%= f.text_field :delivery_address, class: "form-control", size: 40, placeholder: "東京都渋谷区代々木神園町0-0" %></td>
         </tr>
         <tr>
           <td>宛名</td>
-          <td><%= f.text_field :name, class: "form-control", size: 40 %></td>
+          <td><%= f.text_field :delivery_name, class: "form-control", size: 40, placeholder: "令和花子" %></td>
         </tr>
       </table>
       <div class="text-center mt-3"><%= f.submit "確認画面へ進む", class: "btn btn-primary" %></div>

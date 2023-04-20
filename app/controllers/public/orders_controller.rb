@@ -8,6 +8,14 @@ class Public::OrdersController < ApplicationController
     @delivery_address = current_customer.address
   end
 
+  def confirm
+    @order = Order.new(order_params)
+    @address = Address.find(params[:order][:address_id])
+    @order.postcode = @address.postcode
+    @order.address = @address.address
+    @order.name = @address.name
+  end
+
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
@@ -22,8 +30,6 @@ class Public::OrdersController < ApplicationController
   def thanx
   end
 
-  def confirm
-  end
 
   private
 

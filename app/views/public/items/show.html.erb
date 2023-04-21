@@ -10,14 +10,14 @@
       <% if @item.sale_status == true %>
         <p class="text-success">販売中</p>
         <h3>¥ <%= ((@item.price_without_tax * 1.1).floor).to_s(:delimited, delimiter: ',') %> (税込み)</h3>
-        <!--部分テンプレートでレンダー-->
-        <p> render  </p>
-        
-        
+        <%= form_with model: @cart_item, local: true do |f| %>
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          <%= f.number_field :quantity, min: 1, placeholder:"個数を選択" %>
+          <%= f.submit "カートに入れる", class:"btn btn-success" %>
+        <% end %>
       <% else %>
         <p class="text-danger">販売停止中です</p>
       <% end %>
-
     </div>
   </div>
 </div>

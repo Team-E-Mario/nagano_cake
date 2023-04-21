@@ -1,17 +1,35 @@
 <div class="container">
   <div class="row">
-    <div class="col-m-2 mr-3 mt-5">
+    <div class="col-md-2 mt-5">
       <%= render 'layouts/search_genre', genres: @genres %>
     </div>
-    <div class="card col-md-10" style="max-width: 100%;">
-      <img class="card-img" src="/assets/main-visual-image.jpg" alt="メインビジュアル">
-      <p>ようこそ、ながのCAKEへ！<br>
+
+    <div class="carousel slide col-md-10 mt-5" data-ride="carousel" style="max-width: 100%; , height: auto;">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="/assets/main-visual-image.jpg" alt="First slide">
+        </div>
+        <div class="carousel-item">
+          <img src="/assets/nagano_cake_top2.jpg" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+          <img src="/assets/nagano_cake_top3.jpg" alt="Third slide">
+        </div>
+      </div>
+    </div>
+      <p class="my-4 fs-3 text-center mx-auto">ようこそ、ながのCAKEへ！<br>
         このサイトは、ケーキ販売のECサイトになります。<br>
-        会員でない方も商品の閲覧はできますが、<br>
+        会員でない方も<%= link_to "商品", items_path %>の閲覧はできますが、<br>
         購入には会員登録が必要になります。</p>
     </div>
   </div>
-  <h3>新着商品</h3>
+  
+  <div class="row">
+    <div class="my-3 mx-auto">
+      <h3>新着商品</h3>
+    </div>
+  </div>
+    
   <div class="row">
     <% @items.last(4).each do |item| %>
       <div class="col-md-3">
@@ -27,7 +45,7 @@
   </div>
 
 <div class="row">
-  <div class="col-xs-2">
+  <div class="col-md-11 text-right mb-3">
     <p><%= link_to "もっと見る>", items_path %></p>
   </div>
 </div>

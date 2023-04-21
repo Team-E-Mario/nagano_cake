@@ -12,7 +12,7 @@
       <%= f.label :payment_method_transfesr, Order.payment_methods_i18n[:transfer]%>
 
       <h4 class="mt-2"><b>お届け先</b></h4>
-      <%= f.radio_button :address_option, 0 %>
+      <%= f.radio_button :address_option, 0, checked: true %>
       <%= f.label :address_option, "ご自身の住所", value: 0, class: "radio-label label-size" %><br>
           <div class="radio-button-content">
             <%= "#{current_customer.postcode} #{current_customer.address}" %><br>

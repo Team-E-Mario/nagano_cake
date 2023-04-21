@@ -19,7 +19,7 @@
           <% @billing_amount = 0 %>
           <% @cart_items.each do |cart_item| %>
             <tr>
-             <!--画像-->
+             <!--商品画像表示-->
               <!--<td class="align-middle" style="word-break:break-all"><%#= attachment_image_tag cart_item.item, :image, format: 'jpeg', fallback: "no_image.jpg", size: "50x50" %><%#= cart_item.item.name %></td>-->
               <td class="align-middle"><%= cart_item.item.name %></td>
               <td class="align-middle"><%= ((cart_item.item.price_without_tax * 1.1).floor).to_s(:delimited, delimiter: ',') %>円</td>
@@ -27,7 +27,6 @@
               <td class="align-middle"><%= ((cart_item.item.price_without_tax * cart_item.quantity * 1.1).floor).to_s(:delimited, delimiter: ',') %>円</td>
             </tr>
             <% @billing_amount += (cart_item.item.price_without_tax * cart_item.quantity * 1.1).floor %>
-            <%# @billing_amount += cart_item.quantity %>
           <% end %>
         </tbody>
        </table>

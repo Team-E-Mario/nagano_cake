@@ -42,14 +42,19 @@
           <tr>
             <div class="form-group"></div>
             <th><%= f.label :税抜価格 %></th>
-            <td><%= f.text_field :price_without_tax, class:"form-control", placeholder:"1,000" %>円</td>
+            <td>
+              <div class="input-group">
+                <%= f.text_field :price_without_tax, class:"form-control", placeholder:"1,000" %>
+                  <span class="d-flex align-items-center"> 円</span> <!--spanでtext_fieldの横に表示させて、d-flex align-items-centerで高さを中央揃え-->
+              </div>
+            </td>
           </tr>
 
           <tr>
             <div class="form-group">
               <th><%= f.label :販売ステータス %></th>
               <td>
-                <!--ステータスが切り替わらないので修正が必要-->
+                <!--販売ステータス選択-->
                 <%= f.radio_button :sale_status, true, checked: true %>
                 <%= f.label :販売中 %>
                 <%= f.radio_button :sale_status, false %>

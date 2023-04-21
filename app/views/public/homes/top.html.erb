@@ -1,8 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-m-2">
-      ジャンル検索
-      <%#= render 'layouts/search_genre', genres: @genres %>
+    <div class="col-m-2 mr-3 mt-5">
+      <%= render 'layouts/search_genre', genres: @genres %>
     </div>
     <div class="card col-md-10" style="max-width: 100%;">
       <img class="card-img" src="/assets/main-visual-image.jpg" alt="メインビジュアル">
@@ -26,13 +25,9 @@
       </div>
     <% end %>
   </div>
-  <h3><%= link_to "もっと見る", items_path %></h3>
+
+<div class="row">
+  <div class="col-xs-2">
+    <p><%= link_to "もっと見る>", items_path %></p>
+  </div>
 </div>
-
-
-<!--<div class="row">-->
-<!--  <div class="col-xs-9"></div>-->
-<!--  <div class="col-xs-2">-->
-<!--    <p><%#=link_to items_path %></p>もっと見る<i class="fas fa-chevron-right"></i></p>-->
-<!--  </div>-->
-<!--</div>-->

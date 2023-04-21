@@ -15,14 +15,6 @@ class Public::OrdersController < ApplicationController
     @order.freight = 800
     @cart_items = current_customer.cart_items
 
-    # ここがよく分からない
-    # @item_total_price = 0 #商品合計金額(税込)
-    # current_user.cart_items.each do |cart_item|
-    # subtotal_price = cart_item.item.price * cart_item.item_count * 110 / 100 #小計(税込)
-    # @item_total_price = 0 += subtotal_price
-    # end
-    # @order.billing_amount = @item_total_price + @order.shipping #請求金額(税込)=商品合計金額+送料
-
     # 配送先の条件分岐
     if params[:order][:address_option] == "0"
       @order.delivery_postcode = current_customer.postcode
@@ -41,7 +33,7 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    #@order.freight = 800
+    @order.freight = 800
     @order.save
     redirect_to thanx_path
   end

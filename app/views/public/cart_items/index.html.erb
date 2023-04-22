@@ -2,8 +2,9 @@
   <div class="row">
     <div class="col-xs-12">
       <div>
+        <%= flash[:notice] %>
         <strong><h2><i class="fas fa-shopping-cart fa-xs"></i>ショッピングカート</h2></strong>
-        <%= link_to cart_items_destroy_all_path(@cart_item), method: :delete, class: 'btn btn-danger nav-link text-dark' do %>
+        <%= link_to cart_items_destroy_all_path(@cart_items), method: :delete, class: 'btn btn-danger nav-link text-dark' do %>
         <i class="fas fa-cart-arrow-down"></i> カートを空にする
         <% end %>
       </div>
@@ -44,27 +45,28 @@
         </table>
     </div>
   </div>
+  <div class="row">
+    <div class="col-xs-8">
+      <span>
+        <%= link_to "買い物を続ける", root_path, class: "btn btn-primary", data: {"turbolinks" => false} %>
+      </span>
+    </div>
+
+    <div class="col-xs-4">
+      <table class="table table-bordered">
+        <tr>
+          <td class="info col-xs-2"><strong>合計金額</strong></td>
+          <td class="col-xs-2"><%= @total_price.floor.to_s(:delimited, delimiter: ',') %>円</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-4 col-xs-offset-4">
+      <span>
+        <%= link_to "情報入力に進む", new_order_path, class: "col-xs-12 btn btn-success"%>
+      </span>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-  <div class="col-xs-8">
-    <span>
-      <%= link_to "買い物を続ける", root_path, class: "btn btn-primary", data: {"turbolinks" => false} %>
-    </span>
-  </div>
-
-  <div class="col-xs-4">
-    <table class="table table-bordered">
-      <tr>
-        <td class="info col-xs-2"><strong>合計金額</strong></td>
-        <td class="col-xs-2"><%= @total_price.floor.to_s(:delimited, delimiter: ',') %>円</td>
-      </tr>
-    </table>
-  </div>
-
-    <div class="col-xs-4 col-xs-offset-4">
-    <span>
-      <%= link_to "情報入力に進む", new_order_path, class: "col-xs-12 btn btn-success"%>
-    </span>
-  </div>
-

@@ -7,13 +7,10 @@ ja:
           in_production: "製作中"
           preparing_delivery: "発送準備中"
           delivered: "発送済み"
-
-      order:
+      # order:
         payment_method:
           credit_card: "クレジットカード"
           transfer: "銀行振込"
-
-
       order_items:
         product_status:
           production_not_possible: "製作不可"

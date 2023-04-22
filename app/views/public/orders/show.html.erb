@@ -33,12 +33,14 @@
           </tr>
         </thead>
         <tbody>
+        <% @billing_amount = 0 %>
         <% @order.order_items.each do |order_item| %>
           <tr>
             <td style="word-break:break-all"><%= order_item.item.name %></td>
-            <!--<td><%#= order_item.((item.price_without_tax * 1.1).floor).to_s(:delimited, delimiter: ',') %></td>-->
+            <td><%= ((order_item.item.price_without_tax * 1.1).floor).to_s(:delimited, delimiter: ',') %></td>
             <td><%= order_item.quantity %></td>
             <!--<td><%#= order_item.quantity * order_item.price_without_tax* 1.1 %></td>-->
+            <% @billing_amount += (order_item.item.price_without_tax * order_item.quantity * 1.1).floor %>
           </tr>
         <% end %>
         </tbody>

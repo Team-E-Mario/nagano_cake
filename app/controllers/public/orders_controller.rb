@@ -35,6 +35,7 @@ class Public::OrdersController < ApplicationController
     @order.customer_id = current_customer.id
     @order.freight = 800
     @order.save
+    # 注文明細を作成し、OrderItemテーブルに保存
     @cart_items = current_customer.cart_items
     @cart_items.each do |cart_item|
       @order_item = OrderItem.new

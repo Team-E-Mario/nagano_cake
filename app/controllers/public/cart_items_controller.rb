@@ -11,7 +11,7 @@ class Public::CartItemsController < ApplicationController
   def create
     @cart_item = CartItem.new(cart_item_params)
     @cart_item.customer_id = current_customer.id
-    @cart_item.item_id = params[:item_id]
+    @cart_item.item_id = cart_item_params[:item_id] #@item_id
     if @cart_item.save
       flash[:notice] = "#{@cart_item.item.name}をカートに追加しました。"
       redirect_to cart_items_path
@@ -30,16 +30,16 @@ class Public::CartItemsController < ApplicationController
 
   # カート内の商品を１つ削除
   def destroy
-    @cart_items = CartItem.find(params[:id])
-    @cart_item.destroyl
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.destroy
     flash[:alert] = "#{@cart_item.item.name}を削除しました"
     redirect_to customers_cart_items_path
   end
 
   # カート内を空にする
   def destroy_all
-    @cart_item = current_customer.cart_items
-    @cart_item.destroy_all
+    @cart_items = current_customer.cart_items
+    @cart_items.destroy_all
     flash[:alert] = "カート内の商品を全て削除しました"
     redirect_to cart_item_path
   end

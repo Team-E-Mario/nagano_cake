@@ -27,8 +27,8 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     get 'about' => 'homes#about'
-    resources :cart_items, only: [:index, :create, :update, :destroy]
     delete '/cart_items/destroy_all' => 'cart_items#destroy_all' #カート内全て削除
+    resources :cart_items, only: [:index, :create, :update, :destroy]
     resources :items, only: [:index, :show]
     get "/orders/thanx" => "orders#thanx", as: "thanx"
     get "/orders/confirm" => "orders#confirm", as: "confirm"

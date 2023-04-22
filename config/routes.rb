@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     resources :items, only: [:index, :new, :show, :edit, :create, :update]
-    resources :genres, only: [:index, :create, :edit, :update]
+    resources :genres, only: [:index, :create, :edit, :update,]
     resources :orders, only: [:index, :show, :update]
     resources :orders_items, only: [:update]
     resources :customers, only: [:index, :show, :edit, :update]
@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     get '/customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch '/customers/withdraw' => 'customers#withdraw', as: 'withdraw'
     resource :customers, only: [:show]
+
   end
 
 

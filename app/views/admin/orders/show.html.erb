@@ -1,2 +1,44 @@
-<h1>Admin::Orders#show</h1>
-<p>Find me in app/views/admin/orders/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10">
+      <h2>注文履歴詳細</h2>
+    </div>
+  </div>
+
+
+  <table class="table table-bordered">
+    <tr>
+      <th class="table-active"　style="width:20%">購入者</th>
+      <td>
+        <%= link_to admin_customer_path do %>
+          <%= @order.customer.last_name + @order.customer.first_name %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th class="table-active"　style="width:20%">注文日</th>
+      <td><%= @order.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+    </tr>
+    <tr>
+      <th class="table-active"　style="width:20%">配送先</th>
+      <td>〒<%= @order.delivery_postcode %> <%= @order.delivery_address %> <%= @order.delivery_name %></td>
+    </tr>
+    <tr>
+      <th class="table-active"　style="width:20%">支払い方法</th>
+      <td><%= @order.payment_method_i18n %></td>
+    </tr>
+    <tr>
+      <%= form_with model: @order, url: admin_order_path, method: :patch, local: true do |f| %>
+      <th class="table-active"　style="width:20%"><%= f.label :status, "注文ステータス" %></th>
+      <td>
+          <%= f.select :status, Order.statuses_i18n.keys.to_a{_i18n} %>
+          <!--日本語化にならない-->
+          <%= hidden_field :id, :value => @order.id %>
+          <%= f.submit "更新", class:"btn btn-success" %>
+      </td>
+      <% end %>
+    </tr>
+  </table>
+
+
+</div>

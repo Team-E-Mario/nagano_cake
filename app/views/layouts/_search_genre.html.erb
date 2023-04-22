@@ -1,0 +1,16 @@
+  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th class="active text-center"><h5 class="search_genre">ジャンル一覧</h5></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @genres.each do |genre| %>
+        <tr>
+          <td class="underline"><%= genre.name %></td>
+          <!--各ジャンルのリンクへの飛び方がわからないので一覧表示機能止まり-->
+          <!--<td class="underline"><i class="fas fa-caret-right"><#%= link_to genre.name, search_field_tag(genre.id), method: :get %></i></td>-->
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

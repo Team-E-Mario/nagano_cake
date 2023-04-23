@@ -11,6 +11,7 @@
       <th class="table-active"　style="width:20%">購入者</th>
       <td>
         <%= link_to admin_customer_path do %>
+        <!--リンクでエラーが出る-->
           <%= @order.customer.last_name + @order.customer.first_name %>
         <% end %>
       </td>
@@ -40,5 +41,58 @@
     </tr>
   </table>
 
+  <div class="row">
+  <div class="col-sm-9">
+    <table class="table table-bordered">
+
+      <thead class="thead-light">
+        <tr>
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th>制作ステータス</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <% @order_items.each do |order_items| %>
+        <tr>
+          <td><%= order_items.item.name %></td>
+          <td><%= (order_items.item.price_without_tax * 1.1).floor.to_s(:delimited, delimiter: ',') %></td>
+          <td><%= order_items.quantity %></td>
+          <td><%= ((order_items.item.price_without_tax * 1.1) * (order_items.quantity)).floor.to_s(:delimited, delimiter: ',') %></td>
+          <td>
+            <%= form_with model: order_items, url: admin_orders_item_path, method: :patch, local:true do |f| %>
+              <%#= f.hidden_field :order_item_id, :value => order_item.id %>
+              <%= f.select :product_status, OrderItem.product_statuses.keys %>
+              <%= f.submit "更新", class:"btn btn-success" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-sm-3">
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <th>商品合計</th>
+          <td><%= (@order.billing_amount).floor.to_s(:delimited, delimiter: ',') %>円</td>
+        </tr>
+        <tr>
+          <th>送料</th>
+          <td><%= @order.freight %>円</td>
+        </tr>
+        <tr>
+          <th>請求金額合計</th>
+          <td><%= (@order.billing_amount + @order.freight).floor.to_s(:delimited, delimiter: ',') %>円</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
 
 </div>

@@ -69,6 +69,9 @@
 
           <!--ログインしていないとき-->
           <% else %>
+          <div class="mr-5 mt-2">
+            <i class="fas fa-smile-wink fa-spin"></i> ようこそ、<strong>ゲスト</strong> さん！<i class="fas fa-smile-wink fa-spin"></i>
+            </div>
           <li>
             <%= link_to about_path, class: 'nav-link text-dark' do %>
             <i class="fas fa-link"></i> About

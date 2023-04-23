@@ -10,8 +10,7 @@
     <tr>
       <th class="table-active"　style="width:20%">購入者</th>
       <td>
-        <%= link_to admin_customer_path do %>
-        <!--リンクでエラーが出る-->
+        <%= link_to admin_customer_path(@order.customer_id) do %>
           <%= @order.customer.last_name + @order.customer.first_name %>
         <% end %>
       </td>
@@ -32,8 +31,7 @@
       <%= form_with model: @order, url: admin_order_path, method: :patch, local: true do |f| %>
       <th class="table-active"　style="width:20%"><%= f.label :status, "注文ステータス" %></th>
       <td>
-          <%= f.select :status, Order.statuses_i18n.keys.to_a{_i18n} %>
-          <!--日本語化にならない-->
+          <%= f.select :status, Order.statuses_i18n.invert %>
           <%= hidden_field :id, :value => @order.id %>
           <%= f.submit "更新", class:"btn btn-success" %>
       </td>
@@ -65,7 +63,7 @@
           <td>
             <%= form_with model: order_items, url: admin_orders_item_path, method: :patch, local:true do |f| %>
               <%#= f.hidden_field :order_item_id, :value => order_item.id %>
-              <%= f.select :product_status, OrderItem.product_statuses.keys %>
+              <%= f.select :product_status, OrderItem.product_statuses_i18n.invert %>
               <%= f.submit "更新", class:"btn btn-success" %>
             <% end %>
           </td>

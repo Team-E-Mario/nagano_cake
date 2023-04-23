@@ -9,29 +9,27 @@
       会員の方はこちらからログイン
     </div>
   </div>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="row">
-      <div class="col-sm-2 px-sm-0 offset-sm-1">
-        <%= f.label "メールアドレス" %>
-      </div>
-      <div class="col-sm-3 px-sm-0">
-        <%= f.email_field :email, :size => "30", autofocus: true, placeholder: "sample@example.com" %>
-      </div>
-    </div>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="row">
-      <div class="col-sm-2 px-sm-0 offset-sm-1">
-        <%= f.label "パスワード" %>
+        <div class="col-sm-2 px-sm-0 offset-sm-1">
+          <%= f.label "メールアドレス" %>
+        </div>
+        <div class="col-sm-3 px-sm-0">
+          <%= f.email_field :email, :size => "30", autofocus: true, placeholder: "sample@example.com" %>
+        </div>
       </div>
-      <div class="col-sm-3 px-sm-0">
-        <%= f.password_field :password, :size => "30", autofocus: true %>
+      <div class="row">
+        <div class="col-sm-2 px-sm-0 offset-sm-1">
+          <%= f.label "パスワード" %>
+        </div>
+        <div class="col-sm-3 px-sm-0">
+          <%= f.password_field :password, :size => "30", autofocus: true %>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2 px-sm-0 offset-sm-1">
-        <%= f.submit "ログイン", class:"btn btn-primary px-4 mt-3 mb-5" %>
+      <div class="row">
+        <div class="col-sm-2 px-sm-0 offset-sm-1">
+          <%= f.submit "ログイン", class:"btn btn-primary px-4 mt-3 mb-5" %>
+        </div>
       </div>
-    </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+  <% end %>
+</div>

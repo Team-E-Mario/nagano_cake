@@ -17,19 +17,19 @@
         </div>
       </div>
     </div>
-      <p class="my-4 fs-3 text-center mx-auto">ようこそ、ながのCAKEへ！<br>
+      <p class="my-4 fs-3 text-center mx-auto">ようこそ、<%= link_to "ながのCAKE", about_path %>へ！<br>
         このサイトは、ケーキ販売のECサイトになります。<br>
         会員でない方も<%= link_to "商品", items_path %>の閲覧はできますが、<br>
-        購入には会員登録が必要になります。</p>
+        購入には<%= link_to "会員登録", new_customer_registration_path %>が必要になります。</p>
     </div>
-  
-  
+
+
   <div class="row">
     <div class="my-3 mx-auto">
       <h3>新着商品</h3>
     </div>
   </div>
-    
+
   <div class="row">
     <% @items.last(4).each do |item| %>
       <div class="col-md-3">

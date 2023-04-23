@@ -7,5 +7,9 @@ class Order < ApplicationRecord
 
   # 支払い方法
   enum payment_method: { credit_card: 0, transfer: 1 }
+  
+  validates :delivery_address, presence: true
+  validates :delivery_postcode, presence: true, length: { minimum: 0, maximum: 7 }
+  validates :delivery_name, presence: true
 
 end

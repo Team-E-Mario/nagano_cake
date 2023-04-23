@@ -15,6 +15,10 @@
 
   <body>
     <%= render 'layouts/header' %>
+    <div class="ml-5">
+      <%= flash[:notice] %>
+      <%= flash[:alert] %>
+     </div>
     <%= yield %>
     <%= render 'layouts/footer' %>
   </body>

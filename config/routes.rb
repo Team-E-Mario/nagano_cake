@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 }
 
  scope module: :public do
-    resource :customers, only: [:edit, :update]
+    resource :customers, only: [:edit, :update, :show]
   end
 
   devise_for :customers,skip: [:passwords], controllers: {
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     get '/customers/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
     patch '/customers/withdraw' => 'customers#withdraw', as: 'withdraw'
-    resource :customers, only: [:show]
+    # resource :customers, only: [:show]
 
   end
 

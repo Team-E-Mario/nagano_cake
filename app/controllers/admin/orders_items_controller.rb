@@ -2,18 +2,17 @@ class Admin::OrdersItemsController < ApplicationController
   before_action :authenticate_admin!
 
   def update
-    @order = Order.find(params[:id])
-    @order.item = OrderItem.find(params[:order_item][order_item.id])
-    if @order_item.update(order_item_params)
-      if @order.order_items.pluck(:product_status).include?("製作中")
-        @order.status = 2
-        @order.save
-      elsif
-        @order.order_items.pluck(:product_status).all?{|status|status == "製作完了"}
-        @order.status = 3
-        @order.save
-      end
+    @order_item = OrderItem.find(params[:id])
+    @order = @order_item.order
+    @order_item.update(order_item_params)
+    #もし製作ステータスが製作中であればorderステータスを2に更新する
+    if @order_item.product_status == "in_production"
+      @order.update(status: 2)
+    #商品の個数と製作ステータスの「製作完了」の商品カウント数が一致すればorderのステータスを3で更新する
+    elsif @order.order_items.count == @order.order_items.where(product_status: "production_complete").count
+      @order.update(status: 3)
     end
+    redirect_to admin_order_path(@order)
   end
 
   private
@@ -21,6 +20,5 @@ class Admin::OrdersItemsController < ApplicationController
   def order_item_params
     params.require(:order_item).permit(:product_status)
   end
-
 
 end

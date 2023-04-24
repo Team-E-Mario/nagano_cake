@@ -1,23 +1,22 @@
 class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
+
   def show
     @order = Order.find(params[:id])
-    @orders = Order.all
-    @order_items = OrderItem.where(order_id: @order)
-    @product_status = @order.order_items.pluck(:product_status)
+    @order_items = @order.order_items
   end
 
   def update
     @order = Order.find(params[:id])
-    @order_items = OrderItem.where(order_id: @order)
+    @order_items = @order.order_items
     @order.update(order_params)
 
-    if @order.status == "入金確認"
+    if @order.status == "payment_confirmation"
       @order_items.update_all(product_status: 1)
     end
     redirect_to admin_order_path(@order)
-
   end
+
 
   private
 

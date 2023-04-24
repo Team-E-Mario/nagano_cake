@@ -12,7 +12,8 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.save
-      redirect_to admin_item_path(@item)
+        flash[:notice] = "#{@item.name}を追加しました"
+        redirect_to admin_item_path(@item)
   end
 
   def show
@@ -26,6 +27,7 @@ class Admin::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     @item.update(item_params)
+    flash[:notice] = "#{@item.name}を編集しました"
     redirect_to admin_item_path(@item.id)
   end
 
@@ -34,7 +36,7 @@ class Admin::ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :image, :introduction, :price_without_tax, :sale_status, :category_id)
   end
-  
-  
+
+
 
 end

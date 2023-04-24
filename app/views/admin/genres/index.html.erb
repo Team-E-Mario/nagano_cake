@@ -8,6 +8,7 @@
 
     <div class="row">
       <div class="col text-center my-2">
+        <%#= render "layouts/errors", obj: @category %>
         <%= form_with model: @category, url:admin_genres_path, method: :post, local: true do |f| %>
           <%= f.label :name, "ジャンル名" %>
           <%= f.text_field :name %>

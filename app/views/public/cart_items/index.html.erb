@@ -2,7 +2,6 @@
   <div class="row">
     <div class="col-md-12 d-block mx-auto mt-5 mb-3">
       <div>
-        <%= flash[:notice] %>
         <div class="mb-5 text-center mx-auto"><h2><i class="fas fa-shopping-cart fa-xs"></i>　ショッピングカート</h2></div>
         <%= link_to cart_items_destroy_all_path(@cart_items), method: :delete, class: 'btn btn-danger nav-link text-dark' do %>
         <i class="fas fa-cart-arrow-down"></i> カートを空にする

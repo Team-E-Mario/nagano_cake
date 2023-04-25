@@ -15,7 +15,7 @@ class Admin::ItemsController < ApplicationController
       flash[:notice] = "#{@item.name}を追加しました"
       redirect_to admin_item_path(@item)
     else
-      flash[:notice] = "ジャンル名を入力してください"
+      flash[:alert] = "ジャンル名を入力してください"
       redirect_to new_admin_item_path
     end
   end
@@ -34,7 +34,7 @@ class Admin::ItemsController < ApplicationController
       flash[:notice] = "#{@item.name}を編集しました"
       redirect_to admin_item_path(@item.id)
     else
-      flash[:notice] = "ジャンル名を入力してください"
+      flash[:alert] = "ジャンル名を入力してください"
       redirect_to edit_admin_item_path(@item)
     end
   end

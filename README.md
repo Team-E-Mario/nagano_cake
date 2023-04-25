@@ -1,5 +1,7 @@
 # Nagano-cake
 
+<img alt="Nagano-Caki-Logo0" src="https://user-images.githubusercontent.com/126536571/234309287-3bb5e30b-bd13-458f-a4ec-9ccdec86ca43.png">
+<img alt="nagano_about1" src="https://user-images.githubusercontent.com/126536571/234310742-12055318-1dbb-44df-a787-e3db815d37c4.png">
 <img width="1470" alt="スクリーンショット 2023-04-24 20 07 44" src="https://user-images.githubusercontent.com/126536571/233979357-305f3ee0-1344-4997-9e80-3b595668f6cc.png">
 
 * [概要](#概要)
